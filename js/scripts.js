@@ -1,5 +1,18 @@
 //Business logic
-function player(number){
+var player1 = new Player(1);
+var player2 = new Player(2);
+var playerCounter = 1;
+var currentPlayer;
+
+var checkCurrentPlayer = function(){
+  if (playerCounter % 2 === 1){
+    currentPlayer = player1;
+  } else {
+    currentPlayer = player2;
+  }
+}
+
+function Player(number){
   this.playerNumber = number;
   this.score = 0;
   this.roll = 0;
@@ -18,49 +31,35 @@ var rollTotal = function(turnScore, playerScore){
 
 //User Intreface Logic
 $(document).ready(function(){
-  var player1 = new player(1);
-  var player2 = new player(2);
-  var playerCounter = 1;
-  var currentPlayer;
 
   $("#reset").submit(function(event){
     event.preventDefault();
-    player1 = new player(1);
-    player2 = new player(2);
+    player1 = new Player(1);
+    player2 = new Player(2);
     $("#pOneScore").text(player1.score);
     $("#pTwoScore").text(player2.score);
     playerCounter = 1;
-    if (playerCounter % 2 === 1){
-      currentPlayer = player1;
-    } else {
-      currentPlayer = player2;
-    }
+    checkCurrentPlayer();
     $("#currentPlayer").text(currentPlayer.name);
+    $("#output").text("");
   });
 
   $("#roll-die").submit(function(event){
     event.preventDefault();
-    if (playerCounter % 2 === 1){
-      currentPlayer = player1;
-    } else {
-      currentPlayer = player2;
-    }
+    checkCurrentPlayer();
+
     currentPlayer.rollDie();
+
     if (currentPlayer.roll === 1) {
       $("#output").text("SORRY! You rolled a 1. You're turn is over and you don't get any points for the turn.");
       playerCounter++;
-      if (playerCounter % 2 === 1){
-        currentPlayer = player1;
-      } else {
-        currentPlayer = player2;
-      }
+      checkCurrentPlayer();
       currentPlayer.turnScore = 0;
 
     } else {
       $("#output").text("You rolled a " + currentPlayer.roll + ". Your score for the turn is now " + currentPlayer.turnScore + ". Click 'Roll' or 'Hold' to continue.");
     }
     $("#currentPlayer").text(currentPlayer.name);
-    $("#takeTurn").show();
   });
 
   $("#hold").submit(function(event){
@@ -74,14 +73,10 @@ $(document).ready(function(){
     }
     currentPlayer.turnScore = 0;
     playerCounter++;
-    if (playerCounter % 2 === 1){
-      currentPlayer = player1;
-    } else {
-      currentPlayer = player2;
-    }
+
+    checkCurrentPlayer();
     $("#pOneScore").text(player1.score);
     $("#pTwoScore").text(player2.score);
     $("#currentPlayer").text(currentPlayer.name);
-    $("#takeTurn").show();
   });
 });
