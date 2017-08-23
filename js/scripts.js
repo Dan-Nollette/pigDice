@@ -14,7 +14,7 @@ Player.prototype.rollDie = function(){
 var player1 = new Player(1);
 var player2 = new Player(2);
 var playerCounter = 1;
-var currentPlayer;
+var currentPlayer = player1;
 
 //Press the roll button...if one-loose turn...else continue playing
 
@@ -89,6 +89,7 @@ $(document).ready(function(){
   $("#reset").submit(function(event){
     event.preventDefault();
     $("#output").text(reseter);
+    $("#currentPlayer").text("Player 1");
     $("#pOneScore").text(player1.score);
     $("#pTwoScore").text(player2.score);
   });
