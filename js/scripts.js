@@ -5,7 +5,9 @@ function die(){
 die.prototype.roll = function(){
   return Math.ceil(Math.random() * 6);
 }
-
+var rollTotal = function(turnScore, playerScore){
+  return turnScore + playerScore;
+}
 
 
 //User Intreface Logic
@@ -26,6 +28,18 @@ $(document).ready(function(){
   });
   $("#hold").submit(function(event){
     event.preventDefault();
+    $("#output").text("Total of " + turnScore + " has been add to your score. It's Player2's turn.");
+    playerOneScore = rollTotal(turnScore, playerOneScore);
+    turnScore = 0;
+    if(playerOneScore >= 100){
+      $("#output").text("You Win!!!");
+    }else{
+      $("#output").text("Next person's turn!!!");
+    }
+
+
+    console.log(playerOneScore);
+
 
   });
 
