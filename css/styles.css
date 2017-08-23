@@ -1,7 +1,10 @@
-h2 {
-  font-size: 30px;
+
+body{
+  font-size: 30px
 }
 
-#takeTurn{
-  display: none;
+
+
+  h2 {
+  font-size: 30px;
 }

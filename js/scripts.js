@@ -4,7 +4,7 @@ function player(number){
   this.score = 0;
   this.roll = 0;
   this.turnScore = 0;
-  this.name = "player" + number;
+  this.name = "Player " + number;
 }
 
 player.prototype.rollDie = function(){
@@ -30,6 +30,12 @@ $(document).ready(function(){
     $("#pOneScore").text(player1.score);
     $("#pTwoScore").text(player2.score);
     playerCounter = 1;
+    if (playerCounter % 2 === 1){
+      currentPlayer = player1;
+    } else {
+      currentPlayer = player2;
+    }
+    $("#currentPlayer").text(currentPlayer.name);
   });
 
   $("#roll-die").submit(function(event){
@@ -43,6 +49,11 @@ $(document).ready(function(){
     if (currentPlayer.roll === 1) {
       $("#output").text("SORRY! You rolled a 1. You're turn is over and you don't get any points for the turn.");
       playerCounter++;
+      if (playerCounter % 2 === 1){
+        currentPlayer = player1;
+      } else {
+        currentPlayer = player2;
+      }
       currentPlayer.turnScore = 0;
 
     } else {
@@ -63,6 +74,11 @@ $(document).ready(function(){
     }
     currentPlayer.turnScore = 0;
     playerCounter++;
+    if (playerCounter % 2 === 1){
+      currentPlayer = player1;
+    } else {
+      currentPlayer = player2;
+    }
     $("#pOneScore").text(player1.score);
     $("#pTwoScore").text(player2.score);
     $("#currentPlayer").text(currentPlayer.name);
