@@ -29,13 +29,9 @@ _This page starts off with displaying a roll, hold and new button.  Player one b
   * _Create a reset button to to start a new game_
     * _Example: press the reset button_
     * _Example: outputs player 1, scores go back to zero_
-
   * _Create a way to display each random number generated for the current player's turn_
     * _Example: first roll = 4, second roll = 6_
     * _Example: outputs will equal 4, then 6 plus the total of the two rolls_
-  * _Create a output info placement for each player_
-    * _Example: player 1 is player, he presses the roll button_
-    * _Example: outputs will be generated in the player 1's section of the screen_
   * _Create the "YOU WIN" pop out on the screen_
     * _Example: player one reaches 104_
     * _Example: "YOU WIN" pops out in the middle of the screen_

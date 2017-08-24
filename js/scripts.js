@@ -23,10 +23,10 @@ var dieRoller = function(){
   currentPlayer.rollDie();
   listAppender();
   if (currentPlayer.roll === 1) {
+    currentPlayer.turnScore = 0;
     playerCounter++;
     listClearer();
     checkCurrentPlayer();
-    currentPlayer.turnScore = 0;
     return "SORRY! You rolled a 1. You're turn is over and you don't get any points for the turn.";
   } else {
     return "You rolled a " + currentPlayer.roll + ". Your score for the turn is now " + currentPlayer.turnScore + ". Click 'Roll' or 'Hold' to continue.";
@@ -38,8 +38,9 @@ var dieRoller = function(){
 var turnHolder = function(){
   currentPlayer.score += currentPlayer.turnScore;
   var returnString = "";
-  if(currentPlayer.score >= 100){
-    returnString = "You Win!!!";
+  if(currentPlayer.score >= 10){
+    winnerPopUp();
+    returnString = "Click 'New' to play again";
   }else{
     returnString = "Total of " + currentPlayer.turnScore + " has been added to your score. It's next Player's turn.";
   }
@@ -57,6 +58,7 @@ var reseter = function(){
   player2 = new Player(2);
   playerCounter = 1;
   checkCurrentPlayer();
+  popUpHider();
   return("");
 }
 //Check to see which player is playing
@@ -105,3 +107,14 @@ $(document).ready(function(){
     $("#pTwoScore").text(player2.score);
   });
 });
+
+function winnerPopUp() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}
+
+function popUpHider() {
+    alert("1");
+    var popup = document.getElementById("myPopup");
+    popup.classList.remove("show");
+}
