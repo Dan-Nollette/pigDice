@@ -26,10 +26,12 @@ var dieRoller = function(){
   if (currentPlayer.roll === 1) {
     currentPlayer.turnScore = 0;
     playerCounter++;
-    listClearer();
+    if (currentPlayer === player1) {
+      listClearer();
+    }
+    returnString = "SORRY, " + currentPlayer.name + "! You rolled a 1. You're turn is over and you don't get any points for the turn.";
     checkCurrentPlayer();
-
-    return "SORRY! You rolled a 1. You're turn is over and you don't get any points for the turn.";
+    return returnString;
   } else {
     return "You rolled a " + currentPlayer.roll + ". Your score for the turn is now " + currentPlayer.turnScore + ". Click 'Roll' or 'Hold' to continue.";
   }
@@ -44,10 +46,12 @@ var turnHolder = function(){
     winnerPopUp();
     returnString = "Click 'New' to play again";
   }else{
-    returnString = "Total of " + currentPlayer.turnScore + " has been added to your score. It's next Player's turn.";
+    returnString = "Good Job, " + currentPlayer.name + ". Total of " + currentPlayer.turnScore + " has been added to your score. It's next Player's turn.";
   }
   currentPlayer.turnScore = 0;
-  listClearer();
+  if (currentPlayer === player1) {
+    listClearer();
+  }
   playerCounter++;
   checkCurrentPlayer();
   return returnString;
@@ -72,15 +76,29 @@ var checkCurrentPlayer = function(){
   }
 };
 
+var turnTaker = function() {
+  if (currentPlayer.turnScore >= 10) {
+    $("#output").text(turnHolder());
+    $("#pOneScore").text(player1.score);
+    $("#pTwoScore").text(player2.score);
+    $("#currentPlayer").text(currentPlayer.name);
+  } else {
+    $("#output").text(dieRoller());
+    $("#currentPlayer").text(currentPlayer.name);
+    if (currentPlayer === player2){
+     turnTaker();
+   }
+  }
+};
 
 //User Intreface Logic
 var listAppender = function(){
   $("#player" + currentPlayer.playerNumber + "List").append("<li>" + currentPlayer.roll + "</li>");
 }
 var listClearer = function(){
-  $("#player" + currentPlayer.playerNumber + "List").text("");
+  $("#player1List").text("");
+  $("#player2List").text("");
 }
-
 
 $(document).ready(function(){
 
@@ -102,6 +120,9 @@ $(document).ready(function(){
     $("#output").text(dieRoller());
 
     $("#currentPlayer").text(currentPlayer.name);
+    if (currentPlayer === player2 && !twoPlayerGame) {
+      turnTaker();
+    }
   });
 //output information for the hold button
   $("#hold").submit(function(event){
@@ -110,6 +131,10 @@ $(document).ready(function(){
     $("#pOneScore").text(player1.score);
     $("#pTwoScore").text(player2.score);
     $("#currentPlayer").text(currentPlayer.name);
+    if (currentPlayer === player2 && !twoPlayerGame) {
+      alert("Your turn just ended, The next player's turn is about to begin.");
+      turnTaker();
+    }
   });
 //output for the reset button
   $("#reset").submit(function(event){
