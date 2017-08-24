@@ -27,6 +27,7 @@ var dieRoller = function(){
     playerCounter++;
     listClearer();
     checkCurrentPlayer();
+
     return "SORRY! You rolled a 1. You're turn is over and you don't get any points for the turn.";
   } else {
     return "You rolled a " + currentPlayer.roll + ". Your score for the turn is now " + currentPlayer.turnScore + ". Click 'Roll' or 'Hold' to continue.";
@@ -114,7 +115,6 @@ function winnerPopUp() {
 }
 
 function popUpHider() {
-    alert("1");
     var popup = document.getElementById("myPopup");
     popup.classList.remove("show");
 }

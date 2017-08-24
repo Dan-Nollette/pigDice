@@ -51,6 +51,13 @@ h3 {
   color: purple;
   text-align: center;
 }
+#myPopup {
+  color: blue;
+  background-color: orange;
+  border: 3px solid darkblue;
+  position: absolute;
+  text-align: center;
+}
 
 /* Popup container */
 .popup {
@@ -62,17 +69,18 @@ h3 {
 /* The actual popup (appears on top) */
 .popup .popuptext {
     visibility: hidden;
-    width: 160px;
+    width: 260px;
+    height: 160px;
     background-color: #555;
     color: #fff;
-    text-align: center;
+    /*text-align: center;*/
     border-radius: 6px;
     padding: 8px 0;
     position: absolute;
     z-index: 1;
     bottom: 125%;
-    left: 50%;
-    margin-left: -80px;
+    left: 100%;
+    margin-left: 50%;
 }
 
 /* Popup arrow */
