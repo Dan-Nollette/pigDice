@@ -38,10 +38,16 @@ _This page starts off with displaying a roll, hold and new button.  Player one b
   * _When "YOU WIN" pop out, the game will be reset to a new game_
     * _Example: "YOU WIN" pops out_
     * _Example: Player goes back to Player 1 and scores return to zero_
-
-
-
-
+  * _Set up radio buttons to choose an option to play with another player or play the computer_
+    * _Example: click computer_
+    * _Example: you play with the computer, otherwise you play with another player_
+  * _Setup a way for the computer to play_
+    * _Example:_Player 1's turn is over_
+        * _Computer rolls_
+        * _A one is generated, computer looses it's turn_
+        * _Computer rolls a number, then will roll again_
+        * _Computer continues to roll until it reaches 10 or more, then computer holds_
+        * _Total for the computers turn add to the score_
 
 ## Setup/Installation Requirements
 
