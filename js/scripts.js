@@ -21,9 +21,10 @@ var currentPlayer = player1;
 var dieRoller = function(){
   checkCurrentPlayer();
   currentPlayer.rollDie();
-
+  listAppender();
   if (currentPlayer.roll === 1) {
     playerCounter++;
+    listClearer();
     checkCurrentPlayer();
     currentPlayer.turnScore = 0;
     return "SORRY! You rolled a 1. You're turn is over and you don't get any points for the turn.";
@@ -43,8 +44,8 @@ var turnHolder = function(){
     returnString = "Total of " + currentPlayer.turnScore + " has been added to your score. It's next Player's turn.";
   }
   currentPlayer.turnScore = 0;
+  listClearer();
   playerCounter++;
-
   checkCurrentPlayer();
   return returnString;
 }
@@ -69,12 +70,21 @@ var checkCurrentPlayer = function(){
 
 
 //User Intreface Logic
+var listAppender = function(){
+  $("#player" + currentPlayer.playerNumber + "List").append("<li>" + currentPlayer.roll + "</li>");
+}
+var listClearer = function(){
+  $("#player" + currentPlayer.playerNumber + "List").text("");
+}
+
+
 $(document).ready(function(){
 
 //output information for the roll button
   $("#roll-die").submit(function(event){
-     event.preventDefault();
+    event.preventDefault();
     $("#output").text(dieRoller());
+
     $("#currentPlayer").text(currentPlayer.name);
   });
 //output information for the hold button
@@ -88,6 +98,7 @@ $(document).ready(function(){
 //output for the reset button
   $("#reset").submit(function(event){
     event.preventDefault();
+    listClearer();
     $("#output").text(reseter);
     $("#currentPlayer").text("Player 1");
     $("#pOneScore").text(player1.score);
