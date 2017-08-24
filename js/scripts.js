@@ -15,6 +15,7 @@ var player1 = new Player(1);
 var player2 = new Player(2);
 var playerCounter = 1;
 var currentPlayer = player1;
+var twoPlayerGame = true;
 
 //Press the roll button...if one-loose turn...else continue playing
 
@@ -83,6 +84,18 @@ var listClearer = function(){
 
 $(document).ready(function(){
 
+  //Play with other player or play with computer
+  $(".radio").change(function(event){
+    event.preventDefault();
+    var aIOption = $("input:radio[name=option]:checked").val();
+    console.log(aIOption);
+    if (aIOption === "computer"){
+      twoPlayerGame = false;
+    } else {
+      twoPlayerGame = true;
+    }
+    console.log(twoPlayerGame);
+  });
 //output information for the roll button
   $("#roll-die").submit(function(event){
     event.preventDefault();
