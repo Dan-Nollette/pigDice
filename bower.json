@@ -1,0 +1,19 @@
+{
+  "name": "pigdice",
+  "description": "#### _This app is the Pig dice game, August 23, 2017_",
+  "main": "index.js",
+  "license": "ISC",
+  "homepage": "https://github.com/Dan-Nollette/pigDice",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "bootstrap": "^3.3.7",
+    "moment": "^2.19.0"
+  }
+}
